@@ -1,0 +1,29 @@
+{% extends 'registration/authbase.html' %}
+{% load socialaccount %}
+{% block content %}
+<div class="d-flex flex-column h-100 align-items-center justify-content-center">
+    <div class="w-50 h-50 my-5 p-5 border border-success rounded bg-light">
+        <h1 class="text-center"> Registration </h1>
+        <!-- FORM -->
+        <form class="p-5" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="w-50 mb-3 m-auto">
+                {{field.label}}
+                {{field}}
+            </div>
+            {% endfor %}
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success w-50 mt-3"> Register</button>
+
+            </div>
+            <div class="mb-3 text-center">
+                <p> or </p>
+                <a href="" class="btn btn-danger"> Google </a>
+                <a href="{% provider_login_url "facebook" method="oauth2" %}" class="btn btn-primary"> Facebook </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
